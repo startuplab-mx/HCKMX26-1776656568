@@ -69,7 +69,6 @@ type RawNode = Omit<ThreatNode, 'centrality'>;
 export class ThreatNetworkComponent implements AfterViewInit {
   private readonly host = viewChild.required<ElementRef<HTMLElement>>('networkHost');
   private readonly detailPanel = viewChild.required<ElementRef<HTMLElement>>('detailPanel');
-  private readonly messageStream = viewChild.required<ElementRef<HTMLElement>>('messageStream');
   private readonly destroyRef = inject(DestroyRef);
   private readonly ngZone = inject(NgZone);
   private resizeObserver?: ResizeObserver;
@@ -438,7 +437,8 @@ export class ThreatNetworkComponent implements AfterViewInit {
         svg.style('cursor', 'grabbing');
       })
       .on('drag', (event, node) => {
-        const [nextX, nextY] = currentTransform.invert([event.x, event.y]);
+        const [pointerX, pointerY] = d3.pointer(event, svg.node() as SVGSVGElement);
+        const [nextX, nextY] = currentTransform.invert([pointerX, pointerY]);
         const padding = node.radius + 22;
 
         node.x = this.clamp(nextX, padding, worldWidth - padding);
@@ -503,7 +503,6 @@ export class ThreatNetworkComponent implements AfterViewInit {
       }
 
       const detailPanel = this.detailPanel().nativeElement;
-      const messageStream = this.messageStream().nativeElement;
 
       animate(detailPanel.querySelectorAll('.detail-card, .metric-card, .panel-heading, .detail-progress'), {
         opacity: [0, 1],
@@ -518,14 +517,6 @@ export class ThreatNetworkComponent implements AfterViewInit {
         duration: 620,
         delay: stagger(80, { start: 80 }),
         ease: 'outCubic'
-      });
-
-      animate(messageStream.querySelectorAll('.message-item'), {
-        opacity: [0, 1],
-        x: [18, 0],
-        duration: 520,
-        delay: stagger(90, { start: 120 }),
-        ease: 'outExpo'
       });
     });
   }

@@ -66,9 +66,7 @@ h4 {
 .profile-meta p,
 .metric-card small,
 .detail-progress small,
-.relation-copy,
-.message-item p,
-.message-item small {
+.relation-copy {
   margin: 0;
   color: #98aac0;
 }
@@ -118,7 +116,6 @@ h4 {
 }
 
 .profile-card,
-.messages-card,
 .detail-overlay > .detail-card {
   padding: 0.9rem;
 }
@@ -257,66 +254,18 @@ h4 {
   gap: 0.65rem;
 }
 
-.messages-card {
-  min-height: 14rem;
-  flex: 1 1 18rem;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-}
-
-.message-stream {
-  min-height: 0;
-  display: grid;
-  gap: 0.7rem;
-  overflow: auto;
-  padding-right: 0.2rem;
-}
-
-.detail-overlay::-webkit-scrollbar,
-.message-stream::-webkit-scrollbar {
+.detail-overlay::-webkit-scrollbar {
   width: 0.45rem;
 }
 
-.detail-overlay::-webkit-scrollbar-track,
-.message-stream::-webkit-scrollbar-track {
+.detail-overlay::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 999px;
 }
 
-.detail-overlay::-webkit-scrollbar-thumb,
-.message-stream::-webkit-scrollbar-thumb {
+.detail-overlay::-webkit-scrollbar-thumb {
   background: rgba(121, 217, 255, 0.3);
   border-radius: 999px;
-}
-
-.message-item {
-  padding: 0.85rem;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.message-item[data-direction='incoming'] {
-  border-color: rgba(124, 232, 255, 0.16);
-}
-
-.message-item[data-direction='outgoing'] {
-  border-color: rgba(255, 114, 105, 0.16);
-}
-
-.message-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  margin-bottom: 0.45rem;
-}
-
-.message-channel {
-  color: #f6f9ff;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 @media (max-width: 1180px) {
@@ -332,7 +281,6 @@ h4 {
 @media (max-width: 720px) {
   .stage-card,
   .profile-card,
-  .messages-card,
   .detail-overlay > .detail-card {
     padding: 0.85rem;
   }
@@ -360,9 +308,5 @@ h4 {
   .compact-heading {
     grid-template-columns: 1fr;
     display: grid;
-  }
-
-  .messages-card {
-    min-height: 12rem;
   }
 }

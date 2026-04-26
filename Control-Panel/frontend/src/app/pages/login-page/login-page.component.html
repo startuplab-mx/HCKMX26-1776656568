@@ -1,42 +1,51 @@
-<section class="auth-shell relative isolate">
-  <div class="auth-grid mx-auto w-full">
+<section class="auth-shell">
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <div class="auth-grid">
     <article class="auth-copy panel-surface">
-      <p class="eyebrow">Control access</p>
-      <h1 class="max-w-[9ch]">Guardian Control Panel</h1>
-      <p class="intro">
-        Consola privada para revisar alertas, bloquear cuentas de riesgo y
-        validar actividad asociada a la proteccion de menores.
-      </p>
+      <div class="brand-block">
+        <div class="brand-mark">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="presentation">
+              <path d="M32 6 50 12.5v16.4c0 12.3-7 23.6-18 29.1-11-5.5-18-16.8-18-29.1V12.5L32 6Z" />
+              <path d="M22 31.5c3.4-4.1 6.7-6.2 10-6.2 3.3 0 6.5 2.1 10 6.2" />
+              <path d="M18.5 25c4.4-5 8.9-7.6 13.5-7.6 4.6 0 9.1 2.6 13.5 7.6" />
+            </svg>
+          </span>
 
-      <div class="auth-highlights">
-        <div class="highlight-card">
-          <span class="metric danger">17</span>
-          <span class="label">alertas criticas</span>
+          <div>
+            <p class="eyebrow">Secure access</p>
+            <h1>Signal Guard</h1>
+          </div>
         </div>
 
-        <div class="highlight-card">
-          <span class="metric safe">243</span>
-          <span class="label">dispositivos verificados</span>
-        </div>
+        <p class="intro">
+          Private operator access for reviewing signals, graph relationships and prioritized risk
+          activity inside the control platform.
+        </p>
+      </div>
 
-        <div class="highlight-card">
-          <span class="metric neutral">92%</span>
-          <span class="label">cobertura del pipeline</span>
-        </div>
+      <div class="preview-frame">
+        <img
+          src="signal-guard-hero.svg"
+          alt="Signal Guard platform preview"
+          class="preview-image"
+        />
       </div>
 
       <div class="message-stream" aria-hidden="true">
-        <span>Alerta: patron de reclutamiento detectado</span>
-        <span>Bloqueo sincronizado en tiempo real</span>
-        <span>Analisis NLP actualizado hace 12 segundos</span>
+        <span>Protected environment</span>
+        <span>Operator-level review</span>
+        <span>Live monitoring ready</span>
       </div>
     </article>
 
     <article class="auth-form panel-surface">
       <div class="form-header">
-        <p class="eyebrow">Internal login</p>
-        <h2>Restricted Access</h2>
-        <p>Only operators approved by the team can enter.</p>
+        <p class="eyebrow">Operator login</p>
+        <h2>Restricted access</h2>
+        <p>Enter your approved operator credentials to continue.</p>
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="form-body">
@@ -45,7 +54,7 @@
           <input
             type="text"
             formControlName="operatorId"
-            placeholder="Ex. OPS-2048"
+            placeholder="OPS-2048"
           />
           @if (
             loginForm.controls.operatorId.invalid &&
@@ -81,8 +90,8 @@
           </small>
         }
 
-        <button type="submit" class="submit-button shadow-[0_24px_60px_rgba(124,232,255,0.28)]">
-          Enter dashboard
+        <button type="submit" class="submit-button">
+          Access platform
         </button>
       </form>
 

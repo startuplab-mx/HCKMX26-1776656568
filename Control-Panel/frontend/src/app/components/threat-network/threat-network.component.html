@@ -88,27 +88,6 @@
           mensajes privados y recurrencia de interacciones entre clusters.
         </p>
       </section>
-
-      <section class="detail-card messages-card">
-        <div class="panel-heading compact-heading">
-          <div>
-            <p class="eyebrow">Flujo de mensajes</p>
-            <h4>Eventos animados</h4>
-          </div>
-        </div>
-
-        <div #messageStream class="message-stream">
-          @for (message of selectedNode().messages; track message.channel + message.timestamp + $index) {
-            <article class="message-item">
-              <div class="message-row">
-                <span class="message-channel">{{ message.channel }}</span>
-                <small>{{ message.timestamp }}</small>
-              </div>
-              <p>{{ message.text }}</p>
-            </article>
-          }
-        </div>
-      </section>
     </aside>
   </div>
 </section>

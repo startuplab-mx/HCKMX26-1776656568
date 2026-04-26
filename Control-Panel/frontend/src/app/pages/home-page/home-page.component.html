@@ -3,205 +3,159 @@
   <div class="ambient ambient-right"></div>
 
   <div class="home-frame">
-    <header class="topbar reveal-panel">
-      <a routerLink="/" class="brand-mark">
-        <span class="brand-badge">G</span>
-        <div>
-          <strong>Guardian</strong>
-          <span>Control Platform</span>
-        </div>
+    <header class="site-header reveal-panel">
+      <a routerLink="/" class="brand-mark" aria-label="Signal Guard inicio">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="presentation">
+            <path d="M32 6 50 12.5v16.4c0 12.3-7 23.6-18 29.1-11-5.5-18-16.8-18-29.1V12.5L32 6Z" />
+            <path d="M22 31.5c3.4-4.1 6.7-6.2 10-6.2 3.3 0 6.5 2.1 10 6.2" />
+            <path d="M18.5 25c4.4-5 8.9-7.6 13.5-7.6 4.6 0 9.1 2.6 13.5 7.6" />
+          </svg>
+        </span>
+
+        <span class="brand-copy">
+          <strong>Signal Guard</strong>
+          <span>Risk Intelligence Platform</span>
+        </span>
       </a>
 
-      <nav class="topnav" aria-label="Secciones principales">
-        <a href="#quienes">Quienes somos</a>
-        <a href="#capacidades">Capacidades</a>
-        <a href="#metodo">Metodo</a>
+      <nav class="site-nav" aria-label="Secciones principales">
+        <a href="#quienes-somos">Quienes somos</a>
+        <a href="#lo-que-hacemos">Lo que hacemos</a>
+        <a href="#por-que-nosotros">Por que nosotros</a>
       </nav>
 
-      <div class="topbar-actions">
-        <a routerLink="/login" class="nav-link">Acceso</a>
-        @if (isAuthenticated()) {
-          <a routerLink="/dashboard" class="nav-button">Dashboard</a>
-        } @else {
-          <a routerLink="/login" class="nav-button">Ingresar</a>
-        }
+      <div class="header-actions">
+        <a routerLink="/login" class="primary-button">Acceso</a>
       </div>
     </header>
 
     <main class="home-stack">
-      <section class="hero-panel panel-surface reveal-panel">
+      <section class="hero-section section-surface reveal-panel">
         <div class="hero-copy">
-          <p class="eyebrow">Monitoreo relacional y lectura de riesgo</p>
-          <h1>Una portada institucional para presentar el proyecto con seriedad.</h1>
+          <p class="eyebrow">Monitoreo digital y lectura de riesgo</p>
+          <h1>Una plataforma seria para equipos que necesitan revisar riesgo con claridad.</h1>
           <p class="lead">
-            Guardian convierte actividad dispersa en una lectura visual clara: relaciones entre
-            cuentas, intensidad de contacto, prioridad operativa y evidencia concentrada para una
-            revision temprana.
+            Signal Guard organiza senales, relaciones y contexto dentro de una experiencia visual
+            mas ejecutiva, sobria y alineada con una presentacion profesional para Estados Unidos.
           </p>
 
           <div class="hero-actions">
-            <a routerLink="/login" class="primary-action">Entrar al panel</a>
-            @if (isAuthenticated()) {
-              <a routerLink="/dashboard" class="secondary-action">Continuar sesion</a>
-            } @else {
-              <a href="#quienes" class="secondary-action">Conocer la plataforma</a>
+            <a routerLink="/login" class="primary-button large-button">Acceso</a>
+          </div>
+
+          <div class="metric-row">
+            @for (metric of trustMetrics; track metric.label) {
+              <article class="metric-card">
+                <strong>{{ metric.value }}</strong>
+                <span>{{ metric.label }}</span>
+              </article>
             }
           </div>
+        </div>
 
-          <div class="hero-footnote">
-            <span class="floating-node">Lectura por capas</span>
-            <span class="floating-node">Concentracion de evidencia</span>
-            <span class="floating-node">Revision operativa</span>
+        <aside class="hero-aside">
+          <div class="hero-image-frame">
+            <img
+              src="signal-guard-hero.svg"
+              alt="Signal Guard platform preview"
+              class="hero-image"
+            />
           </div>
-        </div>
 
-        <div class="hero-visual">
-          <article class="visual-card main-visual">
-            <div class="visual-header">
-              <span class="visual-label">Resumen operativo</span>
-              <span class="visual-pill">Activo</span>
-            </div>
+          <article class="signal-card">
+            <p class="small-label">Resumen operativo</p>
+            <strong>Supervision priorizada</strong>
+            <p class="aside-copy">
+              Una vista preparada para concentrar lectura relacional, evidencia y seguimiento.
+            </p>
 
-            <div class="visual-metric">
-              <strong>4 capas</strong>
-              <p>Compresion visual para que el grafo no se degrade cuando crecen los nodos.</p>
-            </div>
-
-            <div class="signal-bars" aria-hidden="true">
-              <span class="bar bar-1"></span>
-              <span class="bar bar-2"></span>
-              <span class="bar bar-3"></span>
-              <span class="bar bar-4"></span>
+            <div class="alert-list">
+              @for (alert of activeAlerts; track alert) {
+                <div class="alert-item">
+                  <span>{{ alert }}</span>
+                  <span class="alert-state">Activa</span>
+                </div>
+              }
             </div>
           </article>
-
-          <article class="visual-card side-visual">
-            <div class="mini-stat">
-              <span>Pipeline validado</span>
-              <strong>92%</strong>
-            </div>
-            <div class="mini-stat">
-              <span>Revision continua</span>
-              <strong>24/7</strong>
-            </div>
-            <div class="mini-stat">
-              <span>Enfoque</span>
-              <strong>Prevencion</strong>
-            </div>
-          </article>
-        </div>
+        </aside>
       </section>
 
-      <section class="info-strip reveal-panel">
-        <article>
-          <span class="strip-kicker">01</span>
-          <strong>Visualizacion estructurada</strong>
-          <p>La interfaz prioriza lectura clara sobre saturacion grafica.</p>
-        </article>
-        <article>
-          <span class="strip-kicker">02</span>
-          <strong>Analisis con contexto</strong>
-          <p>Cada nodo se entiende dentro de una relacion, no como dato aislado.</p>
-        </article>
-        <article>
-          <span class="strip-kicker">03</span>
-          <strong>Uso operativo</strong>
-          <p>Diseñado para navegar, revisar y decidir con rapidez.</p>
-        </article>
-      </section>
-
-      <section id="quienes" class="about-panel panel-surface reveal-panel">
+      <section id="quienes-somos" class="content-section section-surface reveal-panel">
         <div class="section-heading">
           <p class="eyebrow">Quienes somos</p>
-          <h2>Un proyecto enfocado en analisis visual, prevencion y trazabilidad.</h2>
+          <h2>Una plataforma pensada para comunicar control, criterio y seriedad institucional.</h2>
+          <p>
+            Signal Guard propone una forma mas clara de presentar supervision digital,
+            trazabilidad y lectura de relaciones dentro de entornos de riesgo.
+          </p>
         </div>
 
-        <div class="about-grid">
-          <div class="about-copy">
-            <p>
-              Disenamos una plataforma para que operadores y analistas puedan entender estructuras
-              de relacion, detectar recruiters, hubs, bridges y targets, y revisar evidencia sin
-              perder el contexto completo del grafo.
-            </p>
-            <p>
-              La propuesta no es solo mostrar nodos. La propuesta es ordenar complejidad, comprimir
-              ruido y entregar una interfaz que sirva para explicar, revisar y actuar.
-            </p>
-          </div>
-
-          <aside class="about-aside">
-            <div class="aside-card">
-              <span>Mision</span>
-              <p>Traducir actividad digital compleja en una lectura util para prevencion temprana.</p>
-            </div>
-            <div class="aside-card">
-              <span>Enfoque</span>
-              <p>Jerarquia visual, evidencias claras y rendimiento estable aun con crecimiento de nodos.</p>
-            </div>
-          </aside>
+        <div class="card-grid">
+          @for (feature of whoWeAreCards; track feature.title) {
+            <article class="info-card">
+              <div class="card-icon">{{ feature.icon }}</div>
+              <h3>{{ feature.title }}</h3>
+              <p>{{ feature.description }}</p>
+            </article>
+          }
         </div>
       </section>
 
-      <section id="capacidades" class="capability-grid">
-        <article class="capability-card panel-surface reveal-panel">
-          <p class="eyebrow">Capacidad 01</p>
-          <h3>Lectura de relaciones</h3>
-          <p>Mapeamos intensidad, recurrencia y tipo de contacto para convertir actividad dispersa en una estructura interpretable.</p>
-        </article>
-
-        <article class="capability-card panel-surface reveal-panel">
-          <p class="eyebrow">Capacidad 02</p>
-          <h3>Priorizacion de riesgo</h3>
-          <p>La interfaz da peso a los nodos relevantes y reduce detalle cuando hace falta para mantener claridad visual.</p>
-        </article>
-
-        <article class="capability-card panel-surface reveal-panel">
-          <p class="eyebrow">Capacidad 03</p>
-          <h3>Evidencia centralizada</h3>
-          <p>Mensajes, publicaciones, score relacional y estado de carga conviven en una misma revision operativa.</p>
-        </article>
-      </section>
-
-      <section id="metodo" class="method-panel panel-surface reveal-panel">
+      <section id="lo-que-hacemos" class="content-section section-surface reveal-panel">
         <div class="section-heading">
-          <p class="eyebrow">Metodo</p>
-          <h2>Una experiencia preparada para crecer sin perder control visual.</h2>
+          <p class="eyebrow">Lo que hacemos</p>
+          <h2>Convertimos senales dispersas en una vista util para revision operativa.</h2>
+          <p>
+            La plataforma organiza relaciones, prioridad y evidencia para facilitar una evaluacion
+            mas rapida y mejor presentada.
+          </p>
         </div>
 
-        <div class="method-grid">
-          <article class="method-step">
-            <span>01</span>
-            <h3>Captura</h3>
-            <p>Se integran cuentas, metadatos, publicaciones y señales de interaccion observadas.</p>
-          </article>
-          <article class="method-step">
-            <span>02</span>
-            <h3>Clasificacion</h3>
-            <p>Los nodos se ordenan por rol, cercania y nivel de prioridad para permitir compresion por capas.</p>
-          </article>
-          <article class="method-step">
-            <span>03</span>
-            <h3>Revision</h3>
-            <p>El operador explora el grafo, abre detalle y revisa evidencia sin saturar la pantalla.</p>
-          </article>
+        <div class="card-grid">
+          @for (capability of capabilities; track capability.title) {
+            <article class="info-card">
+              <div class="card-icon">SG</div>
+              <h3>{{ capability.title }}</h3>
+              <p>{{ capability.description }}</p>
+            </article>
+          }
         </div>
       </section>
 
-      <section class="cta-panel panel-surface reveal-panel">
+      <section id="por-que-nosotros" class="content-section section-surface reveal-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Por que nosotros</p>
+          <h2>Porque una herramienta profesional debe verse profesional desde el primer scroll.</h2>
+          <p>
+            El home prioriza una jerarquia visual limpia, secciones claras y una ruta directa hacia
+            acceso o dashboard.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          @for (reason of differentiators; track reason.title) {
+            <article class="info-card">
+              <div class="card-icon">01</div>
+              <h3>{{ reason.title }}</h3>
+              <p>{{ reason.description }}</p>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section class="cta-section section-surface reveal-panel">
         <div>
-          <p class="eyebrow">Entrada principal</p>
-          <h2>La home ya puede funcionar como presentacion formal del sistema.</h2>
-          <p class="cta-copy">
-            Desde aqui puedes presentar el proyecto a alguien nuevo y despues llevarlo al login o
-            al dashboard sin que la interfaz se sienta improvisada.
+          <p class="eyebrow">Acceso</p>
+          <h2>Una portada limpia que lleva al usuario directo al siguiente paso.</h2>
+          <p class="lead cta-copy">
+            Menos saturacion visual, mejor lectura y continuidad natural hacia login o dashboard.
           </p>
         </div>
 
         <div class="cta-actions">
-          <a routerLink="/login" class="primary-action">Abrir acceso</a>
-          @if (isAuthenticated()) {
-            <a routerLink="/dashboard" class="secondary-action">Ir al dashboard</a>
-          }
+          <a routerLink="/login" class="primary-button large-button">Acceso</a>
         </div>
       </section>
     </main>
