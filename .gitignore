@@ -1,0 +1,7 @@
+# Branch-specific workspace exclusions for the Panel-Alert branch
+Control-Panel/
+.codex
+
+# System files
+.DS_Store
+Thumbs.db

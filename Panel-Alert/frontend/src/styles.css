@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --pa-bg-primary: #070708;
+  --pa-bg-secondary: #111214;
+  --pa-bg-elevated: #17191d;
+  --pa-border: rgba(233, 220, 193, 0.12);
+  --pa-text-primary: #f3ede3;
+  --pa-text-secondary: #a89f93;
+  --pa-accent: #d5b074;
+  --pa-accent-strong: #f1d8ab;
+  --pa-info: #8ea4bf;
+  --pa-success: #8fbe9e;
+  --pa-warning: #d6a25d;
+  --pa-danger: #eb6b5b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  color: var(--pa-text-primary);
+  font-family: "Aptos", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(213, 176, 116, 0.08), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(235, 107, 91, 0.08), transparent 20%),
+    linear-gradient(135deg, rgba(19, 18, 16, 0.76), rgba(7, 7, 8, 0.98)),
+    var(--pa-bg-primary);
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(233, 220, 193, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 220, 193, 0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at center, black 34%, transparent 94%);
+  opacity: 0.34;
+}
+
+body::after {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(213, 176, 116, 0.09), transparent 12%),
+    radial-gradient(circle at 86% 18%, rgba(235, 107, 91, 0.08), transparent 15%),
+    radial-gradient(circle at 76% 82%, rgba(143, 190, 158, 0.07), transparent 13%);
+  filter: blur(18px);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

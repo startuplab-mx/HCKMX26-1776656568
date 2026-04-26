@@ -1,0 +1,111 @@
+<section class="register-shell">
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <div class="register-grid">
+    <article class="register-copy panel-surface">
+      <div class="brand-block">
+        <div class="brand-mark">
+          <span class="brand-icon" aria-hidden="true">
+            <img src="harborwatch-mark.svg" alt="" />
+          </span>
+          <div>
+            <p class="eyebrow">Operator enrollment</p>
+            <h1>HarborWatch</h1>
+          </div>
+        </div>
+        <p class="intro">
+          Create an operator account for reviewing alerts, blocks and device activity inside the
+          parental-control operations panel.
+        </p>
+      </div>
+
+      <div class="preview-card">
+        <img
+          src="signal-guard-hero.svg"
+          alt="HarborWatch interface preview"
+          class="preview-image"
+        />
+      </div>
+
+      <div class="support-links">
+        <span>Role-based access</span>
+        <span>Alert review</span>
+        <span>Live moderation flow</span>
+      </div>
+    </article>
+
+    <article class="register-form panel-surface">
+      <div class="form-header">
+        <p class="eyebrow">Register</p>
+        <h2>Create operator profile</h2>
+        <p>Set up a local demo account to access the HarborWatch workspace.</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-body">
+        <label class="field">
+          <span>Full name</span>
+          <input type="text" formControlName="fullName" placeholder="Alicia Gomez" />
+          @if (registerForm.controls.fullName.invalid && registerForm.controls.fullName.touched) {
+            <small>Enter the operator full name.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input type="email" formControlName="email" placeholder="operator@harborwatch.com" />
+          @if (registerForm.controls.email.invalid && registerForm.controls.email.touched) {
+            <small>Enter a valid email address.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Operator ID</span>
+          <input type="text" formControlName="operatorId" placeholder="OPS-4312" />
+          @if (registerForm.controls.operatorId.invalid && registerForm.controls.operatorId.touched) {
+            <small>Use an operator identifier with at least 4 characters.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Access Key</span>
+          <input type="password" formControlName="accessKey" placeholder="••••••••••" />
+          @if (registerForm.controls.accessKey.invalid && registerForm.controls.accessKey.touched) {
+            <small>The access key must have at least 8 characters.</small>
+          }
+        </label>
+
+        @if (duplicateAccount) {
+          <small class="error-copy">
+            This operator ID or email already exists in the local demo registry.
+          </small>
+        }
+
+        <button type="submit" class="submit-button">Create account</button>
+      </form>
+
+      <div class="form-footer">
+        <span>Already registered?</span>
+        <a routerLink="/login">Go to login</a>
+      </div>
+
+      <div class="google-access">
+        <div
+          id="google-signup-button"
+          class="google-button-slot"
+          aria-label="Sign up with Google"
+        ></div>
+
+        @if (!googleButtonReady && !googleAuthError) {
+          <small class="google-feedback">Loading Google secure access...</small>
+        }
+
+        @if (googleAuthError) {
+          <small class="error-copy google-feedback">
+            {{ googleAuthError }}
+          </small>
+        }
+      </div>
+    </article>
+  </div>
+</section>

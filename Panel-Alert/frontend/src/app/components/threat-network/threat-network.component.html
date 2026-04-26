@@ -1,0 +1,93 @@
+<section class="workspace-shell">
+  <div class="graph-frame">
+    <div #networkHost class="network-host"></div>
+
+    <aside #detailPanel class="detail-overlay" [class.is-open]="detailOpen()">
+      <section class="detail-card profile-card">
+        <div class="panel-heading panel-headline">
+          <div>
+            <p class="eyebrow">Usuario seleccionado</p>
+            <div class="profile-meta">
+              <div>
+                <h3>{{ selectedNode().userName }}</h3>
+                <p>{{ selectedNode().handle }} · {{ selectedNode().platform }}</p>
+              </div>
+              <span
+                class="relation-pill"
+                [style.border-color]="getRelationColor(selectedNode().relationScore)"
+              >
+                {{ selectedNode().relationScore }}%
+              </span>
+            </div>
+          </div>
+
+          <button type="button" class="close-button" (click)="closeDetail()">
+            Cerrar
+          </button>
+        </div>
+
+        <p class="support-copy">{{ selectedNode().summary }}</p>
+
+        <div class="tag-row">
+          <span class="role-chip" [attr.data-role]="selectedNode().role">
+            {{ selectedNode().role }}
+          </span>
+          <span class="centrality-chip">
+            {{ selectedNode().centrality }} conexiones directas
+          </span>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="metric-card">
+            <span>Publicaciones</span>
+            <strong>{{ selectedNode().publications }}</strong>
+            <small>Volumen disponible para auditoria.</small>
+          </article>
+
+          <article class="metric-card">
+            <span>Valor de scraping</span>
+            <strong>{{ selectedNode().scrapingValue }}%</strong>
+            <div class="scraping-bar">
+              <span
+                class="scraping-fill"
+                [style.width.%]="selectedNode().scrapingValue"
+                [style.background]="getRelationColor(selectedNode().scrapingValue)"
+              ></span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <div class="panel-heading compact-heading">
+          <div>
+            <p class="eyebrow">Metodo de carga</p>
+            <h4>{{ selectedNode().loadMethod }}</h4>
+          </div>
+          <strong class="load-value">{{ selectedNode().loadProgress }}%</strong>
+        </div>
+
+        <div class="detail-progress">
+          <div class="progress-track">
+            <span class="progress-fill" [style.width.%]="selectedNode().loadProgress"></span>
+          </div>
+          <small>Estado del pipeline de scraping y consolidacion.</small>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <div class="panel-heading compact-heading">
+          <div>
+            <p class="eyebrow">Lectura probabilista</p>
+            <h4>{{ selectedRelationLabel() }}</h4>
+          </div>
+        </div>
+
+        <p class="support-copy relation-copy">
+          El porcentaje se construye con comentarios, vistas, publicaciones,
+          mensajes privados y recurrencia de interacciones entre clusters.
+        </p>
+      </section>
+    </aside>
+  </div>
+</section>
