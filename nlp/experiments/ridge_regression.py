@@ -70,6 +70,11 @@ print(f"ROC-AUC: {roc:.4f}")
 # =========================
 # 6. Interpretación (clave)
 # =========================
+
+
+with open('./results/results_ridge_regression.pkl', 'wb') as f:
+    pickle.dump(results, f)
+
 print("\nEjemplos:")
 for i in range(5):
     print(f"Real: {y_test[i]:6.2f} | Prob+: {y_prob[i]:.3f} | Pred: {y_pred[i]}")
