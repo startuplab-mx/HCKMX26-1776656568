@@ -92,3 +92,9 @@ urllib3            2.6.3
 wasabi             1.1.3
 weasel             1.0.0
 wrapt              2.1.2
+
+Se pueden conseguir la mayoría de dichas dependencias con los siguiente comandos
+pip install -U spacy
+python -m spacy download es_core_news_sm
+pip install pandas
+pip install -U scikit-learn
