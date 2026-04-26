@@ -1,0 +1,33 @@
+<section class="dashboard-shell">
+  <header class="topbar panel-surface">
+    <div class="topbar-title">
+      <h1>Grafo de Riesgo</h1>
+      <div class="header-legend" aria-label="Clasificacion de colores">
+        <span class="legend-chip">
+          <span class="legend-dot weak"></span>
+          Debil
+        </span>
+        <span class="legend-chip">
+          <span class="legend-dot low"></span>
+          Baja
+        </span>
+        <span class="legend-chip">
+          <span class="legend-dot medium"></span>
+          Media
+        </span>
+        <span class="legend-chip">
+          <span class="legend-dot high"></span>
+          Alta
+        </span>
+      </div>
+    </div>
+
+    <button type="button" class="logout-link" (click)="signOut()">
+      Volver al menu
+    </button>
+  </header>
+
+  <main class="network-card panel-surface">
+    <app-threat-network class="full-network" />
+  </main>
+</section>
