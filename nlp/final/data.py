@@ -51,7 +51,6 @@ def create_vectorized_datasets(test_data, output_dir = 'pkl'):
 
         # Normalizar corpus
         X_train_norm = norm_func(test_data)
-        X_test_norm = norm_func(corpus_data.X_test)
 
         for vec_name, vec_func in vectorizations.items():
 
