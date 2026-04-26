@@ -14,7 +14,7 @@ except Exception as e:
 def divide_text(text):
     splitted = []
 
-    texts = re.split(r'\|,|-->', text)
+    texts = re.split(r'\|,|-->|<--', text)
 
     for t in texts:
         splitted.append(t[re.search(r':', t).start()+1:])
@@ -37,7 +37,7 @@ def clean_msgs(msg):
 
 
 if __name__ == '__main__':
-    texts = pd.read_csv('cositas.csv', sep='\t')
+    texts = pd.read_csv('cositas2.csv', sep='\t')
     msgs = []
     cut_messages(texts, msgs)
 

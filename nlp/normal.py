@@ -84,6 +84,7 @@ def clean_text(text):
     """Limpieza básica del texto"""
     text = text.lower()
     text = re.sub(r'[^a-z4áéíóúñü\s]', '', text)
+    text = re.sub(r'#', '', text)
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
