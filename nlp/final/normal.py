@@ -228,19 +228,10 @@ def create_vectorized_datasets(corpus_data, output_dir = 'pkl'):
 
     # Definir las normalizaciones a probar
     normalizations = {
-        'none': normalize_none,
-        'no_stopwords': normalize_no_stopwords,
-        'stemming': normalize_stemming,
-        'stemming_no_stopwords': normalize_stemming_no_stopwords,
-        'liwc': normalize_liwc,
-        'liwc_no_stopwords': normalize_liwc_no_stopwords,
         'spacy': normalize_spacy,
-        'spacy_no_stopwords': normalize_spacy_no_stopwords
     }
     
     vectorizations = {
-        'binary': lambda: CountVectorizer(binary=True),
-        'frequency': lambda: CountVectorizer(binary=False),
         'tfidf': lambda: TfidfVectorizer()
     }
 
@@ -300,7 +291,7 @@ if __name__ == '__main__':
     
     os.makedirs('pkl', exist_ok=True)
 
-    ruta = 'pkl/corpus_base.pkl'
+    ruta = './pkl/corpus_base.pkl'
 
     with open(ruta, 'wb') as f:
         pickle.dump(corpus_data, f)
