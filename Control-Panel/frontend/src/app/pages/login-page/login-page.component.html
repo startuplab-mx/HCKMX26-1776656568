@@ -1,0 +1,95 @@
+<section class="auth-shell relative isolate">
+  <div class="auth-grid mx-auto w-full">
+    <article class="auth-copy panel-surface">
+      <p class="eyebrow">Control access</p>
+      <h1 class="max-w-[9ch]">Guardian Control Panel</h1>
+      <p class="intro">
+        Consola privada para revisar alertas, bloquear cuentas de riesgo y
+        validar actividad asociada a la proteccion de menores.
+      </p>
+
+      <div class="auth-highlights">
+        <div class="highlight-card">
+          <span class="metric danger">17</span>
+          <span class="label">alertas criticas</span>
+        </div>
+
+        <div class="highlight-card">
+          <span class="metric safe">243</span>
+          <span class="label">dispositivos verificados</span>
+        </div>
+
+        <div class="highlight-card">
+          <span class="metric neutral">92%</span>
+          <span class="label">cobertura del pipeline</span>
+        </div>
+      </div>
+
+      <div class="message-stream" aria-hidden="true">
+        <span>Alerta: patron de reclutamiento detectado</span>
+        <span>Bloqueo sincronizado en tiempo real</span>
+        <span>Analisis NLP actualizado hace 12 segundos</span>
+      </div>
+    </article>
+
+    <article class="auth-form panel-surface">
+      <div class="form-header">
+        <p class="eyebrow">Internal login</p>
+        <h2>Restricted Access</h2>
+        <p>Only operators approved by the team can enter.</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="form-body">
+        <label class="field">
+          <span>Operator ID</span>
+          <input
+            type="text"
+            formControlName="operatorId"
+            placeholder="Ex. OPS-2048"
+          />
+          @if (
+            loginForm.controls.operatorId.invalid &&
+            loginForm.controls.operatorId.touched
+          ) {
+            <small>Enter a valid operator identifier.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Access Key</span>
+          <input
+            type="password"
+            formControlName="accessKey"
+            placeholder="••••••••••"
+          />
+          @if (
+            loginForm.controls.accessKey.invalid &&
+            loginForm.controls.accessKey.touched
+          ) {
+            <small>The access key must have at least 8 characters.</small>
+          }
+        </label>
+
+        <div class="demo-access">
+          <span>Demo access</span>
+          <code>OPS-2048 / guardian404</code>
+        </div>
+
+        @if (invalidCredentials) {
+          <small class="credentials-error">
+            Invalid operator ID or access key.
+          </small>
+        }
+
+        <button type="submit" class="submit-button shadow-[0_24px_60px_rgba(124,232,255,0.28)]">
+          Enter dashboard
+        </button>
+      </form>
+
+      <div class="form-footer">
+        <span class="pulse"></span>
+        Session protected with internal credentials.
+      </div>
+    </article>
+  </div>
+</section>

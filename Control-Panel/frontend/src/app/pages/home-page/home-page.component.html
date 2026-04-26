@@ -1,0 +1,209 @@
+<section class="home-shell">
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <div class="home-frame">
+    <header class="topbar reveal-panel">
+      <a routerLink="/" class="brand-mark">
+        <span class="brand-badge">G</span>
+        <div>
+          <strong>Guardian</strong>
+          <span>Control Platform</span>
+        </div>
+      </a>
+
+      <nav class="topnav" aria-label="Secciones principales">
+        <a href="#quienes">Quienes somos</a>
+        <a href="#capacidades">Capacidades</a>
+        <a href="#metodo">Metodo</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <a routerLink="/login" class="nav-link">Acceso</a>
+        @if (isAuthenticated()) {
+          <a routerLink="/dashboard" class="nav-button">Dashboard</a>
+        } @else {
+          <a routerLink="/login" class="nav-button">Ingresar</a>
+        }
+      </div>
+    </header>
+
+    <main class="home-stack">
+      <section class="hero-panel panel-surface reveal-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Monitoreo relacional y lectura de riesgo</p>
+          <h1>Una portada institucional para presentar el proyecto con seriedad.</h1>
+          <p class="lead">
+            Guardian convierte actividad dispersa en una lectura visual clara: relaciones entre
+            cuentas, intensidad de contacto, prioridad operativa y evidencia concentrada para una
+            revision temprana.
+          </p>
+
+          <div class="hero-actions">
+            <a routerLink="/login" class="primary-action">Entrar al panel</a>
+            @if (isAuthenticated()) {
+              <a routerLink="/dashboard" class="secondary-action">Continuar sesion</a>
+            } @else {
+              <a href="#quienes" class="secondary-action">Conocer la plataforma</a>
+            }
+          </div>
+
+          <div class="hero-footnote">
+            <span class="floating-node">Lectura por capas</span>
+            <span class="floating-node">Concentracion de evidencia</span>
+            <span class="floating-node">Revision operativa</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <article class="visual-card main-visual">
+            <div class="visual-header">
+              <span class="visual-label">Resumen operativo</span>
+              <span class="visual-pill">Activo</span>
+            </div>
+
+            <div class="visual-metric">
+              <strong>4 capas</strong>
+              <p>Compresion visual para que el grafo no se degrade cuando crecen los nodos.</p>
+            </div>
+
+            <div class="signal-bars" aria-hidden="true">
+              <span class="bar bar-1"></span>
+              <span class="bar bar-2"></span>
+              <span class="bar bar-3"></span>
+              <span class="bar bar-4"></span>
+            </div>
+          </article>
+
+          <article class="visual-card side-visual">
+            <div class="mini-stat">
+              <span>Pipeline validado</span>
+              <strong>92%</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Revision continua</span>
+              <strong>24/7</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Enfoque</span>
+              <strong>Prevencion</strong>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="info-strip reveal-panel">
+        <article>
+          <span class="strip-kicker">01</span>
+          <strong>Visualizacion estructurada</strong>
+          <p>La interfaz prioriza lectura clara sobre saturacion grafica.</p>
+        </article>
+        <article>
+          <span class="strip-kicker">02</span>
+          <strong>Analisis con contexto</strong>
+          <p>Cada nodo se entiende dentro de una relacion, no como dato aislado.</p>
+        </article>
+        <article>
+          <span class="strip-kicker">03</span>
+          <strong>Uso operativo</strong>
+          <p>Diseñado para navegar, revisar y decidir con rapidez.</p>
+        </article>
+      </section>
+
+      <section id="quienes" class="about-panel panel-surface reveal-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Quienes somos</p>
+          <h2>Un proyecto enfocado en analisis visual, prevencion y trazabilidad.</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              Disenamos una plataforma para que operadores y analistas puedan entender estructuras
+              de relacion, detectar recruiters, hubs, bridges y targets, y revisar evidencia sin
+              perder el contexto completo del grafo.
+            </p>
+            <p>
+              La propuesta no es solo mostrar nodos. La propuesta es ordenar complejidad, comprimir
+              ruido y entregar una interfaz que sirva para explicar, revisar y actuar.
+            </p>
+          </div>
+
+          <aside class="about-aside">
+            <div class="aside-card">
+              <span>Mision</span>
+              <p>Traducir actividad digital compleja en una lectura util para prevencion temprana.</p>
+            </div>
+            <div class="aside-card">
+              <span>Enfoque</span>
+              <p>Jerarquia visual, evidencias claras y rendimiento estable aun con crecimiento de nodos.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="capacidades" class="capability-grid">
+        <article class="capability-card panel-surface reveal-panel">
+          <p class="eyebrow">Capacidad 01</p>
+          <h3>Lectura de relaciones</h3>
+          <p>Mapeamos intensidad, recurrencia y tipo de contacto para convertir actividad dispersa en una estructura interpretable.</p>
+        </article>
+
+        <article class="capability-card panel-surface reveal-panel">
+          <p class="eyebrow">Capacidad 02</p>
+          <h3>Priorizacion de riesgo</h3>
+          <p>La interfaz da peso a los nodos relevantes y reduce detalle cuando hace falta para mantener claridad visual.</p>
+        </article>
+
+        <article class="capability-card panel-surface reveal-panel">
+          <p class="eyebrow">Capacidad 03</p>
+          <h3>Evidencia centralizada</h3>
+          <p>Mensajes, publicaciones, score relacional y estado de carga conviven en una misma revision operativa.</p>
+        </article>
+      </section>
+
+      <section id="metodo" class="method-panel panel-surface reveal-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Metodo</p>
+          <h2>Una experiencia preparada para crecer sin perder control visual.</h2>
+        </div>
+
+        <div class="method-grid">
+          <article class="method-step">
+            <span>01</span>
+            <h3>Captura</h3>
+            <p>Se integran cuentas, metadatos, publicaciones y señales de interaccion observadas.</p>
+          </article>
+          <article class="method-step">
+            <span>02</span>
+            <h3>Clasificacion</h3>
+            <p>Los nodos se ordenan por rol, cercania y nivel de prioridad para permitir compresion por capas.</p>
+          </article>
+          <article class="method-step">
+            <span>03</span>
+            <h3>Revision</h3>
+            <p>El operador explora el grafo, abre detalle y revisa evidencia sin saturar la pantalla.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-panel panel-surface reveal-panel">
+        <div>
+          <p class="eyebrow">Entrada principal</p>
+          <h2>La home ya puede funcionar como presentacion formal del sistema.</h2>
+          <p class="cta-copy">
+            Desde aqui puedes presentar el proyecto a alguien nuevo y despues llevarlo al login o
+            al dashboard sin que la interfaz se sienta improvisada.
+          </p>
+        </div>
+
+        <div class="cta-actions">
+          <a routerLink="/login" class="primary-action">Abrir acceso</a>
+          @if (isAuthenticated()) {
+            <a routerLink="/dashboard" class="secondary-action">Ir al dashboard</a>
+          }
+        </div>
+      </section>
+    </main>
+  </div>
+</section>
