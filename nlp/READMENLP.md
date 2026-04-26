@@ -98,3 +98,6 @@ pip install -U spacy
 python -m spacy download es_core_news_sm
 pip install pandas
 pip install -U scikit-learn
+pip install fastapi
+pip install fastapi uvicorn 
+pip install python-multipart numpy
