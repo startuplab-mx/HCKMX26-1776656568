@@ -1,0 +1,123 @@
+<section class="auth-shell">
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <div class="auth-grid">
+    <article class="auth-copy panel-surface">
+      <div class="brand-block">
+        <div class="brand-mark">
+          <span class="brand-icon" aria-hidden="true">
+            <img src="harborwatch-mark.svg" alt="" />
+          </span>
+
+          <div>
+            <p class="eyebrow">Secure access</p>
+            <h1>HarborWatch</h1>
+          </div>
+        </div>
+
+        <p class="intro">
+          Private operator access for reviewing alerts, blocked entities, device activity and
+          parental-control decisions inside the operations panel.
+        </p>
+      </div>
+
+      <div class="preview-frame">
+        <img
+          src="signal-guard-hero.svg"
+          alt="HarborWatch platform preview"
+          class="preview-image"
+        />
+      </div>
+
+      <div class="message-stream" aria-hidden="true">
+        <span>Protected environment</span>
+        <span>Operator-level review</span>
+        <span>Live monitoring ready</span>
+      </div>
+    </article>
+
+    <article class="auth-form panel-surface">
+      <div class="form-header">
+        <p class="eyebrow">Operator login</p>
+        <h2>Restricted access</h2>
+        <p>Use Google quick access or enter your approved operator credentials.</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="form-body">
+        <label class="field">
+          <span>Operator ID</span>
+          <input
+            type="text"
+            formControlName="operatorId"
+            placeholder="OPS-2048"
+          />
+          @if (
+            loginForm.controls.operatorId.invalid &&
+            loginForm.controls.operatorId.touched
+          ) {
+            <small>Enter a valid operator identifier.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Access Key</span>
+          <input
+            type="password"
+            formControlName="accessKey"
+            placeholder="••••••••••"
+          />
+          @if (
+            loginForm.controls.accessKey.invalid &&
+            loginForm.controls.accessKey.touched
+          ) {
+            <small>The access key must have at least 8 characters.</small>
+          }
+        </label>
+
+        <div class="demo-access">
+          <span>Demo access</span>
+          <code>OPS-2048 / guardian404</code>
+        </div>
+
+        @if (invalidCredentials) {
+          <small class="credentials-error">
+            Invalid operator ID or access key.
+          </small>
+        }
+
+        <button type="submit" class="submit-button">
+          Access platform
+        </button>
+      </form>
+
+      <div class="form-footer">
+        <span class="pulse"></span>
+        Session protected with internal credentials or Google Identity Services.
+      </div>
+
+      <div class="form-link-row">
+        <span>Need an operator profile?</span>
+        <a routerLink="/register">Create account</a>
+      </div>
+
+      <div class="google-access">
+        <div
+          id="google-signin-button"
+          class="google-button-slot"
+          aria-label="Continue with Google"
+        ></div>
+
+        @if (!googleButtonReady && !googleAuthError) {
+          <small class="google-feedback">Loading Google secure access...</small>
+        }
+
+        @if (googleAuthError) {
+          <small class="credentials-error google-feedback">
+            {{ googleAuthError }}
+          </small>
+        }
+      </div>
+    </article>
+  </div>
+</section>

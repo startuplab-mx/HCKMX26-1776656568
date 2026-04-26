@@ -1,0 +1,245 @@
+<section class="panel-shell">
+  <aside class="sidebar panel-surface">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-top">
+        <span class="sidebar-logo" aria-hidden="true">
+          <img src="harborwatch-mark.svg" alt="" />
+        </span>
+        <div>
+          <p class="eyebrow">Panel operativo</p>
+          <h1>HarborWatch</h1>
+        </div>
+      </div>
+      <p class="sidebar-copy">
+        Supervisa usuarios de riesgo, bloqueos de contenido no apto y dispositivos vinculados a perfiles infantiles.
+      </p>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Panel sections">
+      <button
+        type="button"
+        class="nav-item"
+        [class.is-active]="activeSection() === 'alerts'"
+        (click)="setSection('alerts')"
+      >
+        <span>Alertas</span>
+        <strong>{{ openAlertsCount() }}</strong>
+      </button>
+
+      <button
+        type="button"
+        class="nav-item"
+        [class.is-active]="activeSection() === 'blocks'"
+        (click)="setSection('blocks')"
+      >
+        <span>Bloqueos</span>
+        <strong>{{ blocks().length }}</strong>
+      </button>
+
+      <button
+        type="button"
+        class="nav-item"
+        [class.is-active]="activeSection() === 'devices'"
+        (click)="setSection('devices')"
+      >
+        <span>Dispositivos</span>
+        <strong>{{ linkedDevicesCount() }}</strong>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p class="eyebrow">Sesion activa</p>
+      <strong>{{ session()?.fullName }}</strong>
+      <span>{{ session()?.operatorId }}</span>
+
+      <button type="button" class="signout-button" (click)="signOut()">
+        Cerrar sesion
+      </button>
+    </div>
+  </aside>
+
+  <section class="workspace">
+    <header class="workspace-header panel-surface">
+      <div class="header-copy">
+        <p class="eyebrow">Operacion en vivo</p>
+        <h2>{{ sectionTitle() }}</h2>
+        <p>{{ sectionSubtitle() }}</p>
+      </div>
+
+      <div class="header-stats">
+        <article class="stat-card">
+          <span>Alertas abiertas</span>
+          <strong>{{ openAlertsCount() }}</strong>
+        </article>
+
+        <article class="stat-card">
+          <span>Elementos restringidos</span>
+          <strong>{{ activeBlocksCount() }}</strong>
+        </article>
+
+        <article class="stat-card">
+          <span>Dispositivos vinculados</span>
+          <strong>{{ linkedDevicesCount() }}</strong>
+        </article>
+      </div>
+    </header>
+
+    <main class="workspace-content panel-surface">
+      @switch (activeSection()) {
+        @case ('alerts') {
+          <section class="section-stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Cola de revision</p>
+                <h3>Usuarios marcados por analisis de riesgo</h3>
+              </div>
+              <p class="section-note">
+                Solo se muestran alertas naranja y roja, que son las que pueden bloquearse o autorizarse.
+              </p>
+            </div>
+
+            <div class="alert-grid">
+              @for (alert of actionableAlerts(); track alert.id) {
+                <article class="alert-card" [attr.data-severity]="severityFromRating(alert.rating)">
+                  <div class="card-row">
+                    <div>
+                      <p class="card-title">{{ usernameLabel(alert.userName) }}</p>
+                      <p class="card-meta">{{ alert.platform }}</p>
+                    </div>
+                    <span class="severity-chip" [attr.data-severity]="severityFromRating(alert.rating)">
+                      {{ severityLabelFromRating(alert.rating) }}
+                    </span>
+                  </div>
+
+                  <div class="alert-metrics">
+                    <div class="metric-pair">
+                      <span>Username</span>
+                      <strong>{{ usernameLabel(alert.userName) }}</strong>
+                    </div>
+                    <div class="metric-pair">
+                      <span>Username rating</span>
+                      <strong>{{ alert.rating }}%</strong>
+                    </div>
+                    <div class="metric-pair">
+                      <span>Platform</span>
+                      <strong>{{ alert.platform }}</strong>
+                    </div>
+                  </div>
+
+                  <div class="card-footer">
+                    <span>Relacionada con bloqueos automaticos</span>
+
+                    @if (alert.status === 'blocked') {
+                      <span class="status-tag blocked">Bloqueado</span>
+                    } @else if (alert.status === 'authorized') {
+                      <span class="status-tag authorized">Autorizado</span>
+                    } @else {
+                      <div class="action-group">
+                        <button
+                          type="button"
+                          class="soft-action"
+                          (click)="authorizeAlert(alert.id)"
+                        >
+                          Autorizar
+                        </button>
+
+                      <button type="button" class="danger-action" (click)="blockAlert(alert.id)">
+                        Bloquear usuario
+                      </button>
+                      </div>
+                    }
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
+        @case ('blocks') {
+          <section class="section-stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Registro de bloqueos</p>
+                <h3>Contenido y cuentas actualmente restringidas</h3>
+              </div>
+              <p class="section-note">
+                Estos elementos fueron bloqueados porque no son aptos para ninos.
+              </p>
+            </div>
+
+            <div class="list-stack">
+              @for (block of blocks(); track block.id) {
+                <article class="list-card">
+                  <div>
+                    <p class="card-title">{{ block.contentLabel }}</p>
+                    <p class="card-meta">{{ block.platform }}</p>
+                    <p class="card-summary">{{ block.reason }}</p>
+                  </div>
+
+                  <div class="list-meta">
+                    <span>{{ block.linkedChild }}</span>
+                    <span>{{ block.blockedAt }}</span>
+                    <strong>{{ block.status }}</strong>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
+        @case ('devices') {
+          <section class="section-stack">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Dispositivos vinculados</p>
+                <h3>Dispositivos de tus hijos vinculados al panel</h3>
+              </div>
+              <p class="section-note">
+                Aqui solo puedes ver los dispositivos vinculados y activar monitoreo cuando sea necesario.
+              </p>
+            </div>
+
+            <div class="device-grid">
+              @for (device of devices(); track device.id) {
+                <article class="device-card" [attr.data-status]="device.status">
+                  <div class="card-row">
+                    <div>
+                      <p class="card-title">{{ device.label }}</p>
+                      <p class="card-meta">{{ device.childName }}</p>
+                    </div>
+                    <span class="device-status">{{ deviceStatusLabel(device.status) }}</span>
+                  </div>
+
+                  <p class="card-summary">{{ device.activity }}</p>
+
+                  <div class="card-footer">
+                    <span>{{ device.lastSeen }}</span>
+                    @if (device.status !== 'watch') {
+                      <button type="button" class="soft-action" (click)="flagDevice(device.id)">
+                        Activar monitoreo
+                      </button>
+                    } @else {
+                      <span class="status-tag authorized">Monitoreando</span>
+                    }
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+      }
+    </main>
+
+    <div class="toast-stack" aria-live="polite" aria-label="System notifications">
+      @for (toast of toasts(); track toast.id) {
+        <article class="toast-card" [attr.data-kind]="toast.kind">
+          <div class="toast-head">
+            <strong>{{ toast.title }}</strong>
+            <span>{{ toast.label }}</span>
+          </div>
+          <p>{{ toast.description }}</p>
+        </article>
+      }
+    </div>
+  </section>
+</section>
